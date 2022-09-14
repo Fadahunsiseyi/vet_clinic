@@ -9,3 +9,5 @@ CREATE TABLE animals(
     weight_kg Decimal,
     species CHAR(50)
 );
+ALTER TABLE animals
+ADD species CHAR(50);
