@@ -25,3 +25,23 @@ SET species = 'digimon' WHERE name LIKE '%mon'
 UPDATE animals
 SET species = 'pokemon' WHERE species IS NULL;
 COMMIT;
+
+BEGIN;
+DELETE FROM animals;
+ROLLBACK;
+
+
+vet_clinic=# BEGIN;
+BEGIN
+vet_clinic=*# DELETE FROM animals WHERE date_of_birth > '2022-01-01';
+DELETE 1
+vet_clinic=*# SAVEPOINT update1;
+SAVEPOINT
+vet_clinic=*# UPDATE animals SET weight_kg = weight_kg*-1;
+UPDATE 10
+vet_clinic=*# ROLLBACK to update1;
+ROLLBACK
+vet_clinic=*# UPDATE animals SET weight_kg = weight_kg*-1 WHERE weight_kg < 0;
+UPDATE 4
+vet_clinic=*# COMMIT;
+COMMIT
