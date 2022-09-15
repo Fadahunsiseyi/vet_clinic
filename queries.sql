@@ -55,3 +55,10 @@ vet_clinic=# SELECT COUNT(*) FROM animals;
 -------
     10
 (1 row)
+
+
+vet_clinic=# SELECT COUNT(*) FROM animals WHERE escape_attempts = 0;
+ count
+-------
+     2
+(1 row)
