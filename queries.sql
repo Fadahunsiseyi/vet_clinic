@@ -84,3 +84,11 @@ vet_clinic=#  SELECT species, MAX(weight_kg) FROM animals GROUP BY species;
  pokemon                                            |  17
  digimon                                            |  45
 (2 rows)
+
+
+vet_clinic=# SELECT species, MIN(weight_kg) FROM animals GROUP BY species;
+                      species                       | min
+----------------------------------------------------+-----
+ pokemon                                            |  11
+ digimon                                            | 5.7
+(2 rows)
