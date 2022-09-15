@@ -45,3 +45,13 @@ vet_clinic=*# UPDATE animals SET weight_kg = weight_kg*-1 WHERE weight_kg < 0;
 UPDATE 4
 vet_clinic=*# COMMIT;
 COMMIT
+
+
+-- QUERIES
+
+
+vet_clinic=# SELECT COUNT(*) FROM animals;
+ count
+-------
+    10
+(1 row)
