@@ -76,3 +76,11 @@ vet_clinic=# SELECT neutered, MAX(escape_attempts) FROM animals GROUP BY neutere
  f        |   3
  t        |   7
 (2 rows)
+
+
+vet_clinic=#  SELECT species, MAX(weight_kg) FROM animals GROUP BY species;
+                      species                       | max
+----------------------------------------------------+-----
+ pokemon                                            |  17
+ digimon                                            |  45
+(2 rows)
