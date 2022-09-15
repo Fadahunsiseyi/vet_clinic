@@ -10,6 +10,7 @@ CREATE TABLE animals(
 );
 ALTER TABLE animals
 ADD species CHAR(50);
+ALTER TABLE animals DROP COLUMN species;
 
 
 CREATE TABLE owners(id INT GENERATED ALWAYS AS IDENTITY, full_name CHAR, age INT);
