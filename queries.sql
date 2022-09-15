@@ -62,3 +62,17 @@ vet_clinic=# SELECT COUNT(*) FROM animals WHERE escape_attempts = 0;
 -------
      2
 (1 row)
+
+vet_clinic=# SELECT AVG(weight_kg) FROM animals;
+         avg
+---------------------
+ 15.5500000000000000
+(1 row)
+
+
+vet_clinic=# SELECT neutered, MAX(escape_attempts) FROM animals GROUP BY neutered;
+ neutered | max
+----------+-----
+ f        |   3
+ t        |   7
+(2 rows)
