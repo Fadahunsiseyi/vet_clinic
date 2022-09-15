@@ -92,3 +92,10 @@ vet_clinic=# SELECT species, MIN(weight_kg) FROM animals GROUP BY species;
  pokemon                                            |  11
  digimon                                            | 5.7
 (2 rows)
+
+vet_clinic=# SELECT species, ROUND(AVG(escape_attempts),2) FROM animals GROUP BY species, date_of_birth HAVING date_of_birth BETWEEN '1990-01-01' AND '2000-12-31';
+                      species                       | round
+----------------------------------------------------+-------
+ pokemon                                            |  3.00
+ pokemon                                            |  3.00
+(2 rows)
