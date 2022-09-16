@@ -10,3 +10,16 @@ CREATE TABLE animals(
 );
 ALTER TABLE animals
 ADD species CHAR(50);
+ALTER TABLE animals DROP COLUMN species;
+ALTER TABLE animals ADD species_id int;
+ALTER TABLE animals ADD owner_id int;
+ALTER TABLE animals ADD foreign key (species_id) references species(id);
+ALTER TABLE animals ADD foreign key (owner_id) references owners(id);
+ALTER TABLE owners ADD PRIMARY KEY(id);
+ALTER TABLE species ADD PRIMARY KEY(id);
+
+
+CREATE TABLE owners(id INT GENERATED ALWAYS AS IDENTITY, full_name CHAR, age INT);
+
+
+CREATE TABLE species(id INT GENERATED ALWAYS AS IDENTITY, name CHAR);
