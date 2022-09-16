@@ -99,3 +99,74 @@ vet_clinic=# SELECT species, ROUND(AVG(escape_attempts),2) FROM animals GROUP BY
  pokemon                                            |  3.00
  pokemon                                            |  3.00
 (2 rows)
+
+
+vet_clinic=#  select animals.name,owners.full_name from animals join owners on animals.owner_id = owners.id
+vet_clinic-# where owners.full_name = 'Melody Pond';
+    name    |                      full_name
+------------+------------------------------------------------------
+ Squirtle   | Melody Pond
+ Charmander | Melody Pond
+ Blossom    | Melody Pond
+(3 rows)
+
+
+vet_clinic=# select animals.name, species.name from animals join species
+vet_clinic-#  on animals.species_id = species.id
+vet_clinic-#  where species.name = 'Pokemon';
+    name    |                         name
+------------+------------------------------------------------------
+ Squirtle   | Pokemon
+ Charmander | Pokemon
+ Blossom    | Pokemon
+ Pikachu    | Pokemon
+(4 rows)
+
+vet_clinic=# select owners.full_name, animals.name from animals right join owners on animals.owner_id = owners.id;
+                      full_name                       |    name
+------------------------------------------------------+------------
+ Sam Smith                                            | Agumon
+ Jennifer Orwell                                      | Gabumon
+ Jennifer Orwell                                      | Pikachu
+ Bob                                                  | Plantmon
+ Bob                                                  | Devimon
+ Melody Pond                                          | Squirtle
+ Melody Pond                                          | Charmander
+ Melody Pond                                          | Blossom
+ Dean Winchester                                      | Angemon
+ Dean Winchester                                      | Boarmon
+ Joddie Whittaker                                     |
+(11 rows)
+
+
+vet_clinic=#  select count(animals.name), species.name from animals join species on animals.species_id = species.id group by species.name;
+ count |                         name
+-------+------------------------------------------------------
+     4 | Pokemon
+     6 | Digimon
+(2 rows)
+
+vet_clinic=# select owners.full_name, species.name from animals join owners on animals.owner_id = owners.id
+vet_clinic-# join species on animals.species_id = species.id where species.name = 'Digimon' and owners.full_name = 'Jennifer Orwell';
+                      full_name                       |                         name
+------------------------------------------------------+------------------------------------------------------
+ Jennifer Orwell                                      | Digimon
+(1 row)
+
+
+vet_clinic=# select animals.name, owners.full_name from animals join owners on animals.owner_id = owners.id where animals.escape_attempts=0
+vet_clinic-# and owners.full_name = 'Dean Winchester';
+ name | full_name
+------+-----------
+(0 rows)
+
+vet_clinic=#  select count(*), owners.full_name from animals join owners on
+vet_clinic-# animals.owner_id = owners.id group by owners.full_name order by count desc;
+ count |                      full_name
+-------+------------------------------------------------------
+     3 | Melody Pond
+     2 | Dean Winchester
+     2 | Bob
+     2 | Jennifer Orwell
+     1 | Sam Smith
+(5 rows)
