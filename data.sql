@@ -18,3 +18,16 @@ INSERT INTO owners (full_name, age) VALUES ('Sam Smith', 34),
  ('Bob',45), ('Melody Pond', 77), 
  ('Dean Winchester', 14), 
  ('Joddie Whittaker', 38);
+
+
+ INSERT INTO species (name) VALUES ('Pokemon'), ('Digimon');
+ UPDATE animals SET species_id = 2 WHERE name LIKE '%mon';
+ UPDATE animals SET species_id = 1 WHERE species_id IS NULL; 
+ UPDATE animals SET owner_id = 1 WHERE name = 'Agumon';
+ UPDATE animals SET owner_id = 2 WHERE name IN ('Gabumon','Pikachu');
+ vet_clinic=*# update animals set owner_id = 3 where name in ('Devimon', 'Plantmon');
+UPDATE 2
+vet_clinic=*# update animals set owner_id = 4 where name in ('Charmander', 'Squirtle', 'Blossom');
+UPDATE 3
+vet_clinic=*# update animals set owner_id = 5 where name in ('Angemon', 'Boarmon');
+UPDATE 2

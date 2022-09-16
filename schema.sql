@@ -14,7 +14,7 @@ ALTER TABLE animals DROP COLUMN species;
 ALTER TABLE animals ADD species_id int;
 ALTER TABLE animals ADD owner_id int;
 ALTER TABLE animals ADD foreign key (species_id) references species(id);
-ALTER TABLE animals ADD foreign key (owner_id) references species(id);
+ALTER TABLE animals ADD foreign key (owner_id) references owners(id);
 ALTER TABLE owners ADD PRIMARY KEY(id);
 ALTER TABLE species ADD PRIMARY KEY(id);
 
