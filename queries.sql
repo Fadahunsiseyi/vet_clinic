@@ -31,7 +31,7 @@ DELETE FROM animals;
 ROLLBACK;
 
 
-vet_clinic=# BEGIN;
+ BEGIN;
 BEGIN
 vet_clinic=*# DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 DELETE 1
@@ -50,60 +50,60 @@ COMMIT
 -- QUERIES
 
 
-vet_clinic=# SELECT COUNT(*) FROM animals;
+ SELECT COUNT(*) FROM animals;
 
 
 
-vet_clinic=# SELECT COUNT(*) FROM animals WHERE escape_attempts = 0;
+ SELECT COUNT(*) FROM animals WHERE escape_attempts = 0;
 
 
-vet_clinic=# SELECT AVG(weight_kg) FROM animals;
-
-
-
-vet_clinic=# SELECT neutered, MAX(escape_attempts) FROM animals GROUP BY neutered;
+ SELECT AVG(weight_kg) FROM animals;
 
 
 
-vet_clinic=#  SELECT species, MAX(weight_kg) FROM animals GROUP BY species;
+ SELECT neutered, MAX(escape_attempts) FROM animals GROUP BY neutered;
 
 
 
-vet_clinic=# SELECT species, MIN(weight_kg) FROM animals GROUP BY species;
-
-
-vet_clinic=# SELECT species, ROUND(AVG(escape_attempts),2) FROM animals GROUP BY species, date_of_birth HAVING date_of_birth BETWEEN '1990-01-01' AND '2000-12-31';
+  SELECT species, MAX(weight_kg) FROM animals GROUP BY species;
 
 
 
-vet_clinic=#  select animals.name,owners.full_name from animals join owners on animals.owner_id = owners.id
-vet_clinic-# where owners.full_name = 'Melody Pond';
+ SELECT species, MIN(weight_kg) FROM animals GROUP BY species;
+
+
+ SELECT species, ROUND(AVG(escape_attempts),2) FROM animals GROUP BY species, date_of_birth HAVING date_of_birth BETWEEN '1990-01-01' AND '2000-12-31';
 
 
 
-vet_clinic=# select animals.name, species.name from animals join species
-vet_clinic-#  on animals.species_id = species.id
-vet_clinic-#  where species.name = 'Pokemon';
-
-
-vet_clinic=# select owners.full_name, animals.name from animals right join owners on animals.owner_id = owners.id;
+  select animals.name,owners.full_name from animals join owners on animals.owner_id = owners.id
+ where owners.full_name = 'Melody Pond';
 
 
 
-vet_clinic=#  select count(animals.name), species.name from animals join species on animals.species_id = species.id group by species.name;
+ select animals.name, species.name from animals join species
+  on animals.species_id = species.id
+  where species.name = 'Pokemon';
 
 
-vet_clinic=# select owners.full_name, species.name from animals join owners on animals.owner_id = owners.id
-vet_clinic-# join species on animals.species_id = species.id where species.name = 'Digimon' and owners.full_name = 'Jennifer Orwell';
+ select owners.full_name, animals.name from animals right join owners on animals.owner_id = owners.id;
 
 
 
-vet_clinic=# select animals.name, owners.full_name from animals join owners on animals.owner_id = owners.id where animals.escape_attempts=0
-vet_clinic-# and owners.full_name = 'Dean Winchester';
+  select count(animals.name), species.name from animals join species on animals.species_id = species.id group by species.name;
 
 
-vet_clinic=#  select count(*), owners.full_name from animals join owners on
-vet_clinic-# animals.owner_id = owners.id group by owners.full_name order by count desc;
+ select owners.full_name, species.name from animals join owners on animals.owner_id = owners.id
+ join species on animals.species_id = species.id where species.name = 'Digimon' and owners.full_name = 'Jennifer Orwell';
+
+
+
+ select animals.name, owners.full_name from animals join owners on animals.owner_id = owners.id where animals.escape_attempts=0
+ and owners.full_name = 'Dean Winchester';
+
+
+  select count(*), owners.full_name from animals join owners on
+ animals.owner_id = owners.id group by owners.full_name order by count desc;
 
 
 select visits.date_of_visit, animals.name, vets.name from animals 
