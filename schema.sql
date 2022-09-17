@@ -20,6 +20,12 @@ ALTER TABLE species ADD PRIMARY KEY(id);
 
 
 CREATE TABLE owners(id INT GENERATED ALWAYS AS IDENTITY, full_name CHAR, age INT);
-
-
 CREATE TABLE species(id INT GENERATED ALWAYS AS IDENTITY, name CHAR);
+
+
+vet_clinic=# CREATE TABLE vets (
+vet_clinic(# id INT GENERATED ALWAYS AS IDENTITY,
+vet_clinic(# name VARCHAR,
+vet_clinic(# age INT,
+vet_clinic(# date_of_graduation DATE);
+CREATE TABLE
