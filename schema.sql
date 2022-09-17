@@ -38,3 +38,10 @@ vet_clinic(#     vet_id int references vets(id),
 vet_clinic(#     species_id int references species(id)
 vet_clinic(# );
 CREATE TABLE
+
+vet_clinic=# create table visits (
+vet_clinic(# vet_id int references vets(id),
+vet_clinic(# animals_id int references animals(id),
+vet_clinic(# date_of_visit date
+vet_clinic(# );
+CREATE TABLE
