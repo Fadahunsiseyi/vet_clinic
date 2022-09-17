@@ -171,32 +171,19 @@ vet_clinic-# animals.owner_id = owners.id group by owners.full_name order by cou
      1 | Sam Smith
 (5 rows)
 
-
-vet_clinic=# select visits.date_of_visit, animals.name, vets.name from animals
-vet_clinic-# join visits on animals.id = visits.animals_id
-vet_clinic-# join vets on visits.vet_id = vets.id
-vet_clinic-# where vets.name = 'William Tatcher'
-vet_clinic-# order by visits.date_of_visit desc limit 1;
+select visits.date_of_visit, animals.name, vets.name from animals 
+join visits on animals.id = visits.animals_id 
+join vets on visits.vet_id = vets.id 
+where vets.name = 'William Tatcher' 
+order by visits.date_of_visit desc limit 1;
  date_of_visit |  name   |      name
 ---------------+---------+-----------------
  2021-01-11    | Blossom | William Tatcher
 (1 row)
 
-
-vet_clinic=# select visits.date_of_visit, animals.name, vets.name from animals
-vet_clinic-# join visits on animals.id = visits.animals_id
-vet_clinic-# join vets on visits.vet_id = vets.id
-vet_clinic-# where vets.name = 'William Tatcher'
-vet_clinic-# order by visits.date_of_visit desc limit 1;
- date_of_visit |  name   |      name
----------------+---------+-----------------
- 2021-01-11    | Blossom | William Tatcher
-(1 row)
-
-
-vet_clinic=# select vets.name, species.name from vets
-vet_clinic-# left join specializations on specializations.vet_id = vets.id
-vet_clinic-# left join species on specializations.species_id = species.id;
+select vets.name, species.name from vets
+left join specializations on specializations.vet_id = vets.id
+left join species on specializations.species_id = species.id;
        name       |                         name
 ------------------+------------------------------------------------------
  William Tatcher  | Pokemon
@@ -206,81 +193,74 @@ vet_clinic-# left join species on specializations.species_id = species.id;
  Maisy SMith      |
 (5 rows)
 
-
-vet_clinic=# select count(animals.name), vets.name from animals
-vet_clinic-# join visits on visits.animals_id = animals.id
-vet_clinic-# join vets on vets.id = visits.vet_id
-vet_clinic-# where vets.name = 'Stephanie Mendez'
-vet_clinic-# group by vets.name;
+select count(animals.name), vets.name from animals 
+join visits on visits.animals_id = animals.id
+join vets on vets.id = visits.vet_id
+where vets.name = 'Stephanie Mendez'
+group by vets.name;
  count |       name
 -------+------------------
      4 | Stephanie Mendez
 (1 row)
 
-
-vet_clinic=# select animals.name, vets.name, visits.date_of_visit from animals
-vet_clinic-# join visits on visits.animals_id = animals.id
-vet_clinic-# join vets on vets.id = visits.vet_id
-vet_clinic-# where vets.name = 'Stephanie Mendez' and visits.date_of_visit between '2020-04-01' and '2020-08-30';
+select animals.name, vets.name, visits.date_of_visit from animals 
+join visits on visits.animals_id = animals.id
+join vets on vets.id = visits.vet_id
+where vets.name = 'Stephanie Mendez' and visits.date_of_visit between '2020-04-01' and '2020-08-30';
   name   |       name       | date_of_visit
 ---------+------------------+---------------
  Agumon  | Stephanie Mendez | 2020-07-22
  Blossom | Stephanie Mendez | 2020-05-24
 (2 rows)
 
-
-vet_clinic=# select animals.name, count(*) from animals join visits on visits.animals_id = animals.id
-vet_clinic-# group by animals.name
-vet_clinic-# order by count desc limit 1;
+select animals.name, count(*) from animals join visits on visits.animals_id = animals.id
+group by animals.name
+order by count desc limit 1;
   name   | count
 ---------+-------
  Boarmon |     4
 (1 row)
 
-
-vet_clinic=# select visits.date_of_visit, animals.name, vets.name from animals
-vet_clinic-# join visits on visits.animals_id = animals.id
-vet_clinic-# join vets on vets.id = visits.vet_id
-vet_clinic-# where vets.name = 'Maisy SMith'
-vet_clinic-# order by visits.date_of_visit asc
-vet_clinic-# limit 1;
+select visits.date_of_visit, animals.name, vets.name from animals
+join visits on visits.animals_id = animals.id
+join vets on vets.id = visits.vet_id
+where vets.name = 'Maisy SMith'
+order by visits.date_of_visit asc
+limit 1;
  date_of_visit |  name   |    name
 ---------------+---------+-------------
  2019-01-24    | Boarmon | Maisy SMith
 (1 row)
 
-
-vet_clinic=# select animals.name, vets.name, visits.date_of_visit from animals
-vet_clinic-# join visits on visits.animals_id = animals.id
-vet_clinic-# join vets on vets.id = visits.vet_id
-vet_clinic-# order by visits.date_of_visit desc limit 1;
+select animals.name, vets.name, visits.date_of_visit from animals 
+join visits on visits.animals_id = animals.id
+join vets on vets.id = visits.vet_id 
+order by visits.date_of_visit desc limit 1;
   name   |       name       | date_of_visit
 ---------+------------------+---------------
  Devimon | Stephanie Mendez | 2021-05-04
 (1 row)
 
-
-vet_clinic=# select vets.name, species.name, count(species.name) from vets
-vet_clinic-# join visits on visits.vet_id = vets.id
-vet_clinic-# join animals on visits.animals_id = animals.id
-vet_clinic-# join species on animals.species_id = species.id
-vet_clinic-# where vets.name = 'Maisy SMith'
-vet_clinic-# group by species.name, vets.name
-vet_clinic-# order by count desc limit 1;
+select vets.name, species.name, count(species.name) from vets 
+join visits on visits.vet_id = vets.id 
+join animals on visits.animals_id = animals.id 
+join species on animals.species_id = species.id 
+where vets.name = 'Maisy SMith' 
+group by species.name, vets.name 
+order by count desc limit 1;
     name     |                         name                         | count
 -------------+------------------------------------------------------+-------
  Maisy SMith | Digimon                                              |     6
 (1 row)
 
-
-vet_clinic=# select visits.vet_id as "Vets ID",
-vet_clinic-# specializations.species_id as "specialized in",
-vet_clinic-# animals.species_id as "Visited Species",
-vet_clinic-# count(*), SUM(COUNT(*)) OVER() AS unspecialize_visits
-vet_clinic-# from visits left join specializations on specializations.vet_id=visits.vet_id
-vet_clinic-# join animals on visits.animals_id=animals.id
-vet_clinic-# where ((animals.species_id!=specializations.species_id or specializations.species_id is null)
-vet_clinic(# and visits.vet_id!=3) group by visits.vet_id,specializations.species_id,animals.species_id;
+select visits.vet_id as "Vets ID",
+specializations.species_id as "specialized in",
+animals.species_id as "Visited Species",
+count(*), SUM(COUNT(*)) OVER() AS unspecialize_visits 
+from visits left join specializations on specializations.vet_id=visits.vet_id 
+join animals on visits.animals_id=animals.id 
+where ((animals.species_id!=specializations.species_id or specializations.species_id is null) 
+and visits.vet_id!=3) group by visits.vet_id,specializations.species_id,animals.species_id;
  Vets ID | specialized in | Visited Species | count | unspecialize_visits
 ---------+----------------+-----------------+-------+---------------------
        2 |                |               2 |     6 |                  10

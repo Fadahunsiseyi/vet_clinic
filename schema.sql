@@ -23,25 +23,21 @@ CREATE TABLE owners(id INT GENERATED ALWAYS AS IDENTITY, full_name CHAR, age INT
 CREATE TABLE species(id INT GENERATED ALWAYS AS IDENTITY, name CHAR);
 
 
-vet_clinic=# CREATE TABLE vets (
-vet_clinic(# id INT GENERATED ALWAYS AS IDENTITY,
-vet_clinic(# name VARCHAR,
-vet_clinic(# age INT,
-vet_clinic(# date_of_graduation DATE);
-CREATE TABLE
+CREATE TABLE vets (
+id INT GENERATED ALWAYS AS IDENTITY,
+name VARCHAR,
+age INT,
+date_of_graduation DATE);
 
-vet_clinic=# ALTER TABLE vets ADD PRIMARY KEY(id);
-ALTER TABLE
+ALTER TABLE vets ADD PRIMARY KEY(id);
 
-vet_clinic=# create table specializations (
-vet_clinic(#     vet_id int references vets(id),
-vet_clinic(#     species_id int references species(id)
-vet_clinic(# );
-CREATE TABLE
+create table specializations (
+    vet_id int references vets(id),
+    species_id int references species(id)
+);
 
-vet_clinic=# create table visits (
-vet_clinic(# vet_id int references vets(id),
-vet_clinic(# animals_id int references animals(id),
-vet_clinic(# date_of_visit date
-vet_clinic(# );
-CREATE TABLE
+create table visits (
+vet_id int references vets(id),
+animals_id int references animals(id),
+date_of_visit date
+);
