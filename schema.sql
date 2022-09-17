@@ -29,3 +29,6 @@ vet_clinic(# name VARCHAR,
 vet_clinic(# age INT,
 vet_clinic(# date_of_graduation DATE);
 CREATE TABLE
+
+vet_clinic=# ALTER TABLE vets ADD PRIMARY KEY(id);
+ALTER TABLE
