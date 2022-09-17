@@ -32,3 +32,9 @@ CREATE TABLE
 
 vet_clinic=# ALTER TABLE vets ADD PRIMARY KEY(id);
 ALTER TABLE
+
+vet_clinic=# create table specializations (
+vet_clinic(#     vet_id int references vets(id),
+vet_clinic(#     species_id int references species(id)
+vet_clinic(# );
+CREATE TABLE
